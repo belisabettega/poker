@@ -6,11 +6,16 @@
   </div>
   <div class="row">
     <div class="col">
-      <%= simple_form_for(@card) do |f| %>
+      <%= simple_form_for [@hand, @card] do |f| %>
         <%= f.input :face %>
         <%= f.input :suit %>
         <%= f.submit %>
       <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= @hand.name if @hand.complete%>
     </div>
   </div>
 </div>
