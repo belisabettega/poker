@@ -4,18 +4,24 @@
       <h1>Poker hands app</h1>
     </div>
   </div>
-  <div class="row">
+   <div class="row">
     <div class="col">
-      <%= simple_form_for [@hand, @card] do |f| %>
-        <%= f.input :face %>
-        <%= f.input :suit %>
-        <%= f.submit %>
+      <%= "Your hand have #{@hand.cards.count} cards until now, you need 5 cards to have a complete hand!" %>
+      <h2> Your cards are: </h2>
+      <% @hand.cards.each do |card| %>
+        <%= card.face%><%= card.suit %>
       <% end %>
     </div>
   </div>
   <div class="row">
     <div class="col">
-      <%= @hand.name if @hand.complete%>
+      <% if @hand.cards.count < 5 %>
+        <%= simple_form_for [@hand, @card] do |f| %>
+          <%= f.input :face, as: :select, collection: Card::FACES %>
+          <%= f.input :suit, as: :select, collection: Card::SUITS %>
+          <%= f.submit %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
