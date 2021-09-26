@@ -31,13 +31,16 @@ class Hand < ApplicationRecord
       array_suits << card.suit
     end
     
-    if array_suits.uniq.count == 1
-      straight_flush?(array_faces)
+    if array_suits.uniq.count == 1 && straight_flush?(array_faces)
+      
     else
     end
   end
 
   def straight_flush?(array_faces)
-    
+    #check if I have a "A" (=1) in the array and reject it
+    # sort the array and check if it's a sequence - for A =1 and for A = 14
+    # maybe check the difference between number elements, which must be one 
+    # check if array has consecutive numbers
   end
 end
