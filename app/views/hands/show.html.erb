@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Poker hands app</h1>
+    </div>
+  </div>
+   <div class="row">
+    <div class="col">
+      <%= "Your hand have #{@hand.cards.count} cards until now, you need 5 cards to have a complete hand!" %>
+      <h2> Your cards are: </h2>
+      <% @hand.cards.each do |card| %>
+        <%= card.face%><%= card.suit %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <% if @hand.cards.count < 5 %>
+        <%= simple_form_for [@hand, @card] do |f| %>
+          <%= f.input :face, as: :select, collection: Card::FACES %>
+          <%= f.input :suit, as: :select, collection: Card::SUITS %>
+          <%= f.submit %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+   <div class="row">
+    <% if @hand.complete %>
+      <div class="col">
+        <div class="mt-3"><%= "Your hand is s #{@hand.name}" %></div>
+        <div class="mt-3"><%= link_to "Create a new hand!", hands_path, method: :post, class: 'btn btn-secondary' %></div>
+      </div>
+    <% end %>
+  </div>
+</div>

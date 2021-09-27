@@ -1,14 +1,14 @@
 class CardsController < ApplicationController
-  def new
-    @card = Card.new
-  end
   def create
     @card = Card.new(card_params)
+    @hand = Hand.find(params[:hand_id])
+    @card.hand = @hand
 
     if @card.save
-      redirect_to root_path
+      @hand.check_hand_cards_number
+      redirect_to hand_path(@hand)
     else
-      render 'new'
+      render 'hands/show'
     end
   end
 
