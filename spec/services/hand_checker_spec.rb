@@ -11,7 +11,7 @@ RSpec.describe HandChecker, type: :model do
   describe '#check_type_of_hand' do
     it 'names the hand type' do
       HandChecker.new(hand).check_type_of_hand
-      expect(hand.name).to eq("Straight")
+      expect(hand.name).to eq("High card")
     end
   end
 end
