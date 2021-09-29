@@ -68,8 +68,8 @@ class HandChecker
     straight_flush = false
     if array_faces.include?("1")
       check_with_one_value = check_if_is_sequential(array_faces)
-      array_with_fourteen = array_faces.reject { |face| face == "1" }
-      array_with_fourteen << "14"
+      array_faces.delete(1)
+      array_with_fourteen = array_faces << 14
       check_with_fourteen_value = check_if_is_sequential(array_with_fourteen)
       straight_flush = true if check_with_one_value || check_with_fourteen_value
     elsif
